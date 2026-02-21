@@ -1,73 +1,59 @@
 [app]
-
 # (str) Title of your application
-title = Presidence choix dune nation
+title = Mon Jeu President
 
 # (str) Package name
-package.name = presidence
+package.name = monjeupresident
 
-# (str) Package domain (needed for android/ios packaging)
-package.domain = org.nicodeme
+# (str) Package domain (needed for android packaging)
+package.domain = org.president
 
-# (str) Source code where the main.py live
+# (str) Source code where the main.py is located
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
 source.include_exts = py,png,jpg,kv,atlas
 
-# (str) Application versioning (method 1)
+# (str) Application versioning
 version = 0.1
 
 # (list) Application requirements
-requirements = python3,kivy
+# J'ai ajouté les versions stables pour éviter l'erreur de "recette"
+requirements = python3,kivy==2.3.0,kivymd,pillow
 
-# (list) Supported orientations
+# (str) Supported orientation
 orientation = portrait
 
-#
-# OSX Specific
-#
-osx.python_version = 3
-osx.kivy_version = 1.9.1
-
-#
-# Android specific
-#
-
 # (bool) Indicate if the application should be fullscreen or not
-fullscreen = 1
+fullscreen = 0
+
+# (list) Permissions
+android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
 
 # (int) Target Android API, should be as high as possible.
-# API 34 corresponds to Android 14. API 35 (Android 15) might not be fully supported yet.
+# API 34 est nécessaire pour Android 14 et 15
 android.api = 34
 
-# (int) Minimum API your APK / AAB will support.
-# Setting to 30 for Android 11.
+# (int) Minimum API your APK will support.
+# API 30 correspond à Android 11
 android.minapi = 30
 
-# (str) Python branch to use (e.g. "3.9", "master"). Usually defaults to a stable 3.x
-python.branch = 3.9
+# (str) Android NDK version to use
+android.ndk = 25b
 
-# (bool) Use --private data storage (True) or --dir public storage (False)
+# (bool) Use the private storage for data
 android.private_storage = True
 
-# (bool) If True, then automatically accept SDK license
-android.accept_sdk_license = True
+# (list) The Android archs to build for.
+# arm64-v8a est indispensable pour les téléphones récents
+android.archs = arm64-v8a, armeabi-v7a
 
-# (list) The Android archs to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
-android.archs = arm64-v8a
-
-# (bool) enables Android auto backup feature (Android API >=23)
-android.allow_backup = True
-
-# (list) Android permissions
-android.permissions = INTERNET, VIBRATE, WRITE_EXTERNAL_STORAGE
-
+# (bool) skip update of the index
+p4a.skip_update = True
 
 [buildozer]
-
 # (int) Log level (0 = error only, 1 = info, 2 = debug (with command output))
 log_level = 2
 
-# (int) Display warning if buildozer is run as root (0 = False, 1 = True)
+# (int) Display warning if buildozer is run as root (0 = off, 1 = on)
 warn_on_root = 1
